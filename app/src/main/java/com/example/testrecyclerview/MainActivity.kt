@@ -2,6 +2,7 @@ package com.example.testrecyclerview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.testrecyclerview.databinding.ActivityMainBinding
 
@@ -17,10 +18,11 @@ class MainActivity : AppCompatActivity() {
         var view = binding.root
         setContentView(view)
 
-        binding.myTextView.setText("Text")
-        binding.myButton.setOnClickListener {
-            Toast.makeText(this, "Message", Toast.LENGTH_SHORT).show()
-        }
+        val items = arrayOf<String?>("item1", "item2", "item3", "item4", "item5", "item6", "item7", "item8", "item5", "item6", "item7", "item8", "item5", "item6", "item7", "item8", "item5", "item6",  "item7", "item8")
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
+
+        binding.listView.adapter = adapter
 
     }
 }
