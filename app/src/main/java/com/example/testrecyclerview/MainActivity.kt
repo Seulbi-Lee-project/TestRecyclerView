@@ -18,11 +18,25 @@ class MainActivity : AppCompatActivity() {
         var view = binding.root
         setContentView(view)
 
-        val items = arrayOf<String?>("item1", "item2", "item3", "item4", "item5", "item6", "item7", "item8", "item5", "item6", "item7", "item8", "item5", "item6", "item7", "item8", "item5", "item6",  "item7", "item8")
+        // 데이터 원본 준비
+        val dataList = mutableListOf<MyItem>()
+        dataList.add(MyItem(R.drawable.sample10, "Bella", "1"))
+        dataList.add(MyItem(R.drawable.sample1, "Charlie", "2"))
+        dataList.add(MyItem(R.drawable.sample2, "Daisy", "1.5"))
+        dataList.add(MyItem(R.drawable.sample3, "Duke", "1"))
+        dataList.add(MyItem(R.drawable.sample4, "Max", "2"))
+        dataList.add(MyItem(R.drawable.sample5, "Happy", "4"))
+        dataList.add(MyItem(R.drawable.sample6, "Luna", "3"))
+        dataList.add(MyItem(R.drawable.sample7, "Bob", "2"))
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
+        // 어댑터 생성 및 연결
+        binding.listView.adapter = MyAdapter(this, dataList)
 
-        binding.listView.adapter = adapter
+        // 항목 클릭 이벤트 처리
+        binding.listView.setOnItemClickListener{ parent, view, position, id ->
+            val name: String = (binding.listView.adapter.getItem(position) as MyItem).aName
+            Toast.makeText(this," $name 선택!", Toast.LENGTH_SHORT).show()
+        }
 
     }
 }
